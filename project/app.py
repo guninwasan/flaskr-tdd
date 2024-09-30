@@ -37,6 +37,11 @@ db = SQLAlchemy(app)
 from project import models
 
 
+@app.before_request
+def create_tables():
+    db.create_all()
+
+
 @app.route("/")
 def index():
     """Searches the database for entries, then displays them."""
